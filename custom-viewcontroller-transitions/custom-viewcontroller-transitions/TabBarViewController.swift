@@ -8,12 +8,14 @@
 
 import UIKit
 
-class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // set tab bar controller delegate
+        delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,10 +33,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    
+}
+
+extension TabBarViewController: UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        // return the animator for the tab bar controller
         return CircleViewControllerAnimatedTransition(presenting: true)
     }
-
 }
