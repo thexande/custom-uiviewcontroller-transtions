@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-// MARK: - UIViewControllerAnimatedTransitioning
-
 /// Animates the transition of a small circular view in the bottom right corner that scales up in size to reveal the view controller underneath in the transition.
 class CircleViewControllerAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
@@ -25,7 +23,7 @@ class CircleViewControllerAnimatedTransition: NSObject, UIViewControllerAnimated
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let toViewVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey), let fromViewVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey), containerView = transitionContext.containerView() else {
+        guard let toViewVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey), fromViewVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey), containerView = transitionContext.containerView() else {
             return
         }
         
@@ -49,7 +47,8 @@ class CircleViewControllerAnimatedTransition: NSObject, UIViewControllerAnimated
             maskingLayer = maskLayer
             
             let pathAnimation = CABasicAnimation(keyPath: "path")
-            //            pathAnimation.fromValue = circlePath.CGPath
+            pathAnimation.delegate = self
+            pathAnimation.fromValue = circlePath.CGPath
             pathAnimation.toValue = endFramePath
             pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             pathAnimation.duration = transitionDuration(transitionContext)
@@ -76,7 +75,8 @@ class CircleViewControllerAnimatedTransition: NSObject, UIViewControllerAnimated
             maskingLayer = maskLayer
             
             let pathAnimation = CABasicAnimation(keyPath: "path")
-            //            pathAnimation.fromValue = circlePath.CGPath
+            pathAnimation.delegate = self
+            pathAnimation.fromValue = circlePath.CGPath
             pathAnimation.toValue = bigCirclePath
             pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             pathAnimation.duration = transitionDuration(transitionContext)
@@ -86,13 +86,12 @@ class CircleViewControllerAnimatedTransition: NSObject, UIViewControllerAnimated
         }
     }
     
-    /*
-     override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-     maskingLayer?.removeFromSuperlayer()
-     context?.completeTransition(true)
-     context = nil
-     }
-     */
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+        maskingLayer?.removeFromSuperlayer()
+        context?.completeTransition(true)
+        context = nil
+    }
+    
     func animationEnded(transitionCompleted: Bool) {
         // animation has ended
     }
@@ -124,16 +123,5 @@ class CustomViewControllerTransitionCoordinator: NSObject, UIViewControllerTrans
     
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
         return nil
-    }
-    
-}
-
-extension UIViewController {
-    /// Display an animating `UIActivityIndicatorView` in the `rightBarButtonItem` of the `UINavigationItem`
-    func animateRightBarButtonItem() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        activityIndicator.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
-        return activityIndicator
     }
 }
