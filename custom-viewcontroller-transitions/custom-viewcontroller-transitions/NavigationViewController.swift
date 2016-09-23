@@ -37,6 +37,6 @@ class NavigationViewController: UINavigationController {
 
 extension NavigationViewController: UINavigationControllerDelegate {
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CircleViewControllerAnimatedTransition(presenting: operation == .Pop)
+        return PushPopViewControllerAnimatedTransitioning(isPresenting: operation == .Push)
     }
 }
