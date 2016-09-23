@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4275BB521D92DACB00991BCA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275BB511D92DACB00991BCA /* NavigationViewController.swift */; };
+		9416202B1D94E6BA003BB4CD /* CurlUpViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9416202A1D94E6BA003BB4CD /* CurlUpViewControllerAnimatedTransitioning.swift */; };
+		9416202D1D94E7D1003BB4CD /* CircleViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9416202C1D94E7D1003BB4CD /* CircleViewControllerAnimatedTransitioning.swift */; };
+		9416202F1D94E81C003BB4CD /* PushPopViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9416202E1D94E81C003BB4CD /* PushPopViewControllerAnimatedTransitioning.swift */; };
 		94B73C881D92CA690064B999 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B73C871D92CA690064B999 /* AppDelegate.swift */; };
 		94B73C8D1D92CA690064B999 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B73C8B1D92CA690064B999 /* Main.storyboard */; };
 		94B73C8F1D92CA690064B999 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B73C8E1D92CA690064B999 /* Assets.xcassets */; };
@@ -15,7 +18,8 @@
 		94B73C9D1D92CA690064B999 /* custom_viewcontroller_transitionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B73C9C1D92CA690064B999 /* custom_viewcontroller_transitionsTests.swift */; };
 		94B73CA81D92CA690064B999 /* custom_viewcontroller_transitionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B73CA71D92CA690064B999 /* custom_viewcontroller_transitionsUITests.swift */; };
 		94B73CB81D92CC060064B999 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B73CB71D92CC060064B999 /* TabBarViewController.swift */; };
-		94B73CBA1D92CC450064B999 /* CustomViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B73CB91D92CC450064B999 /* CustomViewControllerTransition.swift */; };
+		94BFDBB91D94321000F3686F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFDBB81D94321000F3686F /* ViewController.swift */; };
+		94BFDBBB1D94479F00F3686F /* DismissableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFDBBA1D94479F00F3686F /* DismissableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		4275BB511D92DACB00991BCA /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		9416202A1D94E6BA003BB4CD /* CurlUpViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurlUpViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		9416202C1D94E7D1003BB4CD /* CircleViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		9416202E1D94E81C003BB4CD /* PushPopViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushPopViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		94B73C841D92CA690064B999 /* custom-viewcontroller-transitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "custom-viewcontroller-transitions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B73C871D92CA690064B999 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94B73C8C1D92CA690064B999 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +57,8 @@
 		94B73CA71D92CA690064B999 /* custom_viewcontroller_transitionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = custom_viewcontroller_transitionsUITests.swift; sourceTree = "<group>"; };
 		94B73CA91D92CA690064B999 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94B73CB71D92CC060064B999 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		94B73CB91D92CC450064B999 /* CustomViewControllerTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewControllerTransition.swift; sourceTree = "<group>"; };
+		94BFDBB81D94321000F3686F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94BFDBBA1D94479F00F3686F /* DismissableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				94B73C871D92CA690064B999 /* AppDelegate.swift */,
-				94B73CB71D92CC060064B999 /* TabBarViewController.swift */,
-				4275BB511D92DACB00991BCA /* NavigationViewController.swift */,
-				94B73CB91D92CC450064B999 /* CustomViewControllerTransition.swift */,
+				94BFDBB61D9417A800F3686F /* UIViewControllers */,
+				94BFDBB71D9417B800F3686F /* Custom UIViewController Transitions */,
 				94B73C8B1D92CA690064B999 /* Main.storyboard */,
 				94B73C8E1D92CA690064B999 /* Assets.xcassets */,
 				94B73C901D92CA690064B999 /* LaunchScreen.storyboard */,
@@ -129,6 +136,27 @@
 				94B73CA91D92CA690064B999 /* Info.plist */,
 			);
 			path = "custom-viewcontroller-transitionsUITests";
+			sourceTree = "<group>";
+		};
+		94BFDBB61D9417A800F3686F /* UIViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				94B73CB71D92CC060064B999 /* TabBarViewController.swift */,
+				4275BB511D92DACB00991BCA /* NavigationViewController.swift */,
+				94BFDBB81D94321000F3686F /* ViewController.swift */,
+				94BFDBBA1D94479F00F3686F /* DismissableViewController.swift */,
+			);
+			name = UIViewControllers;
+			sourceTree = "<group>";
+		};
+		94BFDBB71D9417B800F3686F /* Custom UIViewController Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				9416202E1D94E81C003BB4CD /* PushPopViewControllerAnimatedTransitioning.swift */,
+				9416202A1D94E6BA003BB4CD /* CurlUpViewControllerAnimatedTransitioning.swift */,
+				9416202C1D94E7D1003BB4CD /* CircleViewControllerAnimatedTransitioning.swift */,
+			);
+			name = "Custom UIViewController Transitions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +290,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9416202B1D94E6BA003BB4CD /* CurlUpViewControllerAnimatedTransitioning.swift in Sources */,
+				94BFDBB91D94321000F3686F /* ViewController.swift in Sources */,
 				4275BB521D92DACB00991BCA /* NavigationViewController.swift in Sources */,
+				94BFDBBB1D94479F00F3686F /* DismissableViewController.swift in Sources */,
+				9416202F1D94E81C003BB4CD /* PushPopViewControllerAnimatedTransitioning.swift in Sources */,
 				94B73CB81D92CC060064B999 /* TabBarViewController.swift in Sources */,
-				94B73CBA1D92CC450064B999 /* CustomViewControllerTransition.swift in Sources */,
 				94B73C881D92CA690064B999 /* AppDelegate.swift in Sources */,
+				9416202D1D94E7D1003BB4CD /* CircleViewControllerAnimatedTransitioning.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
