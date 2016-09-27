@@ -22,48 +22,47 @@ class CircleViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
         }
         
         if presenting {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: toViewVC.view.bounds.width, height: toViewVC.view.bounds.width))
-            view.center = containerView.center
-            view.backgroundColor = toViewVC.view.backgroundColor
-            view.alpha = 1
-            view.layer.cornerRadius = view.frame.height / 2
+            let circleViewWidth = toViewVC.view.bounds.width / 2
             
-            containerView.addSubview(view)
+            let circleView = UIView(frame: CGRect(x: toViewVC.view.bounds.midX - (circleViewWidth / 2), y: toViewVC.view.bounds.maxY, width: circleViewWidth, height: circleViewWidth))
+            circleView.backgroundColor = toViewVC.view.backgroundColor
+            circleView.layer.cornerRadius = circleView.frame.height / 2
             
-            // when presenting
+            containerView.addSubview(circleView)
             containerView.addSubview(toViewVC.view)
             toViewVC.view.alpha = 0
             
-            UIView.animateWithDuration(transitionDuration(transitionContext) / 3, animations: {
-                view.transform = CGAffineTransformMakeScale(1.5, 1.5)
-                }, completion: { completed in
-                    UIView.animateWithDuration(self.transitionDuration(transitionContext) / 3, animations: {
-                        view.transform = CGAffineTransformMakeScale(0.5, 0.5)
-                        }, completion: { completed in
-                            UIView.animateWithDuration(self.transitionDuration(transitionContext) / 3, animations: {
-                                view.transform = CGAffineTransformMakeScale(3, 3)
-                                view.alpha = 0
-                                toViewVC.view.alpha = 1
-                                }, completion: { completed in
-                                    view.removeFromSuperview()
-                                    transitionContext.completeTransition(completed)
-                            })
-                    })
+            let relativeKeyFrameDuration = 1.0 / 3
+            UIView.animateKeyframesWithDuration(transitionDuration(transitionContext), delay: 0.0, options: .CalculationModeLinear, animations: {
+                UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: relativeKeyFrameDuration, animations: {
+                    circleView.center = toViewVC.view.center
+                })
+                UIView.addKeyframeWithRelativeStartTime(0.3, relativeDuration: relativeKeyFrameDuration, animations: {
+                    circleView.transform = CGAffineTransformMakeScale(0.5, 0.5)
+                })
+                UIView.addKeyframeWithRelativeStartTime(0.6, relativeDuration: relativeKeyFrameDuration, animations: {
+                    circleView.transform = CGAffineTransformMakeScale(10, 10)
+                    toViewVC.view.alpha = 1
+                })
+            }, completion: { completed in
+                circleView.removeFromSuperview()
+                transitionContext.completeTransition(completed)
             })
         } else {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: fromViewVC.view.bounds.height, height: fromViewVC.view.bounds.height))
-            view.center = containerView.center
-            view.backgroundColor = .whiteColor()
-            view.alpha = 1
-            view.layer.cornerRadius = view.frame.height / 2
+            let maskViewHeight = fromViewVC.view.bounds.height * 1.1
+            let maskView = UIView(frame: CGRect(x: 0, y: 0, width: maskViewHeight, height: maskViewHeight))
+            maskView.center = containerView.center
+            maskView.backgroundColor = fromViewVC.view.backgroundColor
+            maskView.alpha = 1
+            maskView.layer.cornerRadius = maskView.frame.height / 2
             
-            containerView.insertSubview(view, aboveSubview: fromViewVC.view)
+            containerView.insertSubview(maskView, aboveSubview: fromViewVC.view)
+            fromViewVC.view.alpha = 0
             
-            UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
-                view.transform = CGAffineTransformMakeScale(0.01, 0.01)
-                view.alpha = 0
-                }, completion: { completed in
-                    view.removeFromSuperview()
+            UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0.0, options: .CurveLinear, animations: {
+                maskView.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            }, completion: { completed in
+                    maskView.removeFromSuperview()
                     transitionContext.completeTransition(completed)
             })
             
