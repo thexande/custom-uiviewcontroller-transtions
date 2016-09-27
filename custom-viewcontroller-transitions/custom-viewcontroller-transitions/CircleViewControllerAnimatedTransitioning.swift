@@ -74,15 +74,50 @@ class CircleViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnima
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 2.0
     }
+}
+
+class CircleInteractiveController: UIPercentDrivenInteractiveTransition {
     
-    func animationEnded(transitionCompleted: Bool) {
-        // clean up work
+    var interactive = false
+    
+    private var shouldCompleteTransition = false
+    var startScale:CGFloat = 0.0
+    
+    func handleGesture(gr: UIPinchGestureRecognizer) {
+        switch gr.state {
+        case .Began:
+            startScale = gr.scale
+            interactive = true
+        case .Changed:
+            let progress = 1.0 - (gr.scale / startScale)
+            print(progress)
+            updateInteractiveTransition(progress < 0.0 ? 0.0 : progress)
+        case .Cancelled:
+            interactive = false
+            cancelInteractiveTransition()
+        case .Ended:
+            interactive = false
+            if gr.velocity <= 0.0 {
+                finishInteractiveTransition()
+            }
+        default:
+            print("Unsupported")
+        }
     }
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
 
 class PresentingViewControllerTransitionCoordinator: NSObject, UIViewControllerTransitioningDelegate {
+    var interactive: UIViewControllerInteractiveTransitioning?
+    
+    override init() {
+        super.init()
+    }
+    init(interactive: UIViewControllerInteractiveTransitioning) {
+        super.init()
+        self.interactive = interactive
+    }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CircleViewControllerAnimatedTransitioning(isPresenting: false)
@@ -97,7 +132,7 @@ class PresentingViewControllerTransitionCoordinator: NSObject, UIViewControllerT
     }
     
     func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return nil
+        return interactive
     }
     
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
