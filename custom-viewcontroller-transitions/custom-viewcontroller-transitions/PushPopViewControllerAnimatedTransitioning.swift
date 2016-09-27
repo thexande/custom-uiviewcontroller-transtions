@@ -46,7 +46,7 @@ class PushPopViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnim
                     time += (duration / Double(numberOfBlinks)) / duration
                 }
                 }, completion: { completed in
-                    transitionContext.completeTransition(completed)
+                    transitionContext.completeTransition(!transitionContext.transitionWasCancelled() && completed)
             })
             
             // when dismiss
